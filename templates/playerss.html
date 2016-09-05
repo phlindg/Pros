@@ -1,0 +1,12 @@
+{% extends "templates/bas.html" %}
+
+{%block content%}
+<div class="players">
+	{% for player in players %}
+		<div class="player">
+			{{player.render() | safe}}
+		</div>
+
+	{%endfor%}
+</div>
+{%endblock%}
