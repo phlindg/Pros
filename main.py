@@ -1,11 +1,10 @@
-import webapp2
-import jinja2
 import os
-import sys
 import urllib
-from google.appengine.ext import db
-from google.appengine.api import images
+
+import jinja2
+import webapp2
 from google.appengine.api import search
+from google.appengine.ext import db
 
 jinja_env = jinja2.Environment(
 	loader = jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -17,6 +16,7 @@ def render_str(template, **params):
 		t = jinja_env.get_template(template)
 		return t.render(**params)
 
+
 class Handler(webapp2.RequestHandler):
 	def write(self, *a, **kw):
 		self.response.out.write(*a, **kw)
@@ -26,10 +26,32 @@ class Handler(webapp2.RequestHandler):
 	def render(self, template, **kw):
 		self.write(self.render_str(template, **kw))
 
+
+
+
+
+
 class MainPage(Handler):
+
+
 	def get(self):
 		players = Players.all().order('name')
-		self.render('templates/playerss.html',players = players)
+		self.render('templates/playerss.html',players = players[0:10])
+
+
+	def post(self):
+		query = self.request.get('search')
+		players = Players.by_name(query)
+		self.render("templates/playerss.html", players = players[0:3])
+
+
+
+
+
+
+
+
+
 
 def p_key(name="default"):
 	return db.Key.from_path("players", name)
@@ -46,7 +68,7 @@ class Players(db.Model):
 
 	@classmethod
 	def by_name(cls, name):
-		p = Players.all().filter('name =', name).get()
+		p = Players.all().filter('name >=', name)
 		#sager egentligen find player where name = name
 		return p
 	def render(self):
@@ -70,14 +92,17 @@ def CreateDocument(name):
 		search.TextField(name="player", value=name)])
 class Comment(Handler):
     """Handles requests to index comments."""
+    def get(self):
+    	self.render("templates/testbas.html")
 
     def post(self):
         """Handles a post request."""
         
         player = self.request.get('name')
         query = self.request.get('search')
-        if content:
-            search.Index(name=_INDEX_NAME).put(CreateDocument(player))
+        if player:
+            search.Index(name=INDEX_NAME).put(CreateDocument(player))
+            self.render("templates/testbas.html", players = player)
         if query:
             self.redirect('/?' + urllib.urlencode(
                 #{'query': query}))
@@ -99,7 +124,7 @@ class Upload(Handler):
 		monitor = self.request.get("monitor")
 		chair = self.request.get("chair")
 
-		#query = self.request.get("search")
+
 
 
 
@@ -114,16 +139,15 @@ class Upload(Handler):
 		if name:
 			p = Players(name = name, mouse = mouse, keyboard = keyboard, monitor = monitor, chair = chair, p_img = p_img)
 			p.put()
-		#	search.Index(name=INDEX_NAME).put(CreateDocument(name))
-			#self.redirect("/players/%s" % str(p.key().id()))
-	#	if query:
-	#		self.redirect("/players/?" + urllib.urlencode(
-	#			{'query' : query.encode("utf-8")}))
+			self.redirect("/")
+
+
 			
 
 
 app = webapp2.WSGIApplication([
 	('/', MainPage),
 	('/upload', Upload),
-	('/players/([0-9]+)', PlayerPage)
+	('/players/([0-9]+)', PlayerPage),
+	('/search', Comment)
 	], debug = True)

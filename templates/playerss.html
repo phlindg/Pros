@@ -8,5 +8,13 @@
 		</div>
 
 	{%endfor%}
+
+{%for scored_document in results%}
+	{%for f in scored_document.field%}
+		{{f.value}}
+	{% endfor %}
+      <p>
+{% endfor %}
 </div>
 {%endblock%}
+
