@@ -1,0 +1,32 @@
+{%extends "templates/bas.html"%}
+
+{%block content%}
+<form method="post">
+    <div class = "searchdiv">
+        <label>
+            Search team:
+            <textarea name="search" rows="1" cols="60"></textarea>
+            <input type="submit" value="Search"/>
+        </label>
+    </div>
+</form>
+
+
+
+
+<div class="teams">
+    {% for team in teams %}
+        <div class="team">
+            {{team.render() | safe}}
+        </div>
+
+    {%endfor%}
+
+    {%for scored_document in results%}
+        {%for f in scored_document.field%}
+            {{f.value}}
+        {% endfor %}
+        <p>
+    {% endfor %}
+</div>
+{%endblock%}

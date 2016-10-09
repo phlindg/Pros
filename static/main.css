@@ -1,8 +1,16 @@
-.player{
-	padding: 20px;
+.player_in_feed{
+    margin-left: auto;
+    margin-right: auto;
+    width:450px;
+    height:450px;
 }
+.player{
+    padding:20px;
+}
+.playerfeed{
 
-
+    display:block;
+}
 img{
 	width:200px;
 	height:200px;

@@ -1,24 +1,79 @@
 <!DOCTYPE html>
 
 <h1>PRO PLAYER GEAR</h1>
-<a href="/">TO HOAM</a>
 <head>
 	<link type="text/css" rel="stylesheet" href="/static/main.css" />
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+	<!-- Latest compiled JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
 
 	<script type="text/javascript" src="/components/angular/angular.min.js"></script>
     <script type="text/javascript" src="/components/angular/angular.js"></script>
     <script type="text/javascript" src="/static/js/main.js"></script>
+
+	<script type="text/javascript" src="/components/bower_components/flow.js/dist/flow.js"></script>
+	<script type="text/javascript" src="/components/bower_components/ng-flow/dist/ng-flow-standalone.js"></script>
 </head>
-<form method="post">
+
+<body>
+
+<section class="tab">
+	<ul class="nav nav-tabs">
+		<li ng-class="{active: tab.isSet(1)}">
+			<a href="/home" ng-click="tab.setTab(1)">Game</a>
+		</li>
+		<li ng-class="{active: tab.isSet(2)}">
+			<a href="/search" ng-click="tab.setTab(2)">Player Search</a>
+		</li>
+		<li ng-class="{active: tab.isSet(3)}">
+			<a href="/teamsearch" ng-click="tab.setTab(3)">Team Search</a>
+		</li>
+		<li ng-class="{active: tab.isSet(4)}">
+			<a href="/home" ng-click="tab.setTab(4)">Leaderbord</a>
+		</li>
+		<li ng-class="{active: tab.isSet(5)}">
+			<a href="/playerfeed" ng-click="tab.setTab(5)">Player Feed</a>
+		</li>
+		<li ng-class="{active: tab.isSet(6)}">
+			<a href="/contact" ng-click="tab.setTab(6)">Contact</a>
+		</li>
+		<li ng-class="{active: tab.isSet(7)}">
+			<a href="/" ng-click="tab.setTab(7)">Homepage</a>
+		</li>
+
+
+	</ul>
+	<!---div  ng-show="tab.isSet(1)">
+		<h4>Hejsan</h4>
+		<blockquote>Frontpage</blockquote>
+	</div>
+	<div  ng-show="tab.isSet(2)">
+		<h4>123123</h4>
+		<blockquote>STUFF IS HERE</blockquote>
+	</div>
+	<div ng-show="tab.isSet(3)">
+		<h4>99999</h4>
+		<blockquote>Contacts</blockquote>
+	</div-->
+</section>
+
+
+<!--form method="post">
 	<label>
 	Search player:
 	<textarea name="search" rows="1" cols="60"></textarea>
     <input type="submit" value="Search"/>
 	</label>
-</form>
+</form-->
 {%block content%}
 
 {%endblock%}
 
 
-<a href="/upload">Upload</a>
+<a href="/uploadplayer">Uploadplayer</a> <br>
+<a href="/uploadteam">Uploadteam</a>
+</body>

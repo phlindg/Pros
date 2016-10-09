@@ -1,6 +1,19 @@
 {% extends "templates/bas.html" %}
 
 {%block content%}
+
+<form method="post">
+	<div class = "searchdiv">
+		<label>
+			Search player:
+			<textarea name="search" rows="1" cols="60"></textarea>
+			<input type="submit" value="Search"/>
+		</label>
+	</div>
+</form>
+
+
+
 <div class="players">
 	{% for player in players %}
 		<div class="player">

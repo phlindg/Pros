@@ -1,0 +1,11 @@
+{%extends "templates/bas.html"%}}
+
+{%block content%}
+<div class="playerfeed">
+    {% for player in players %}
+    <div class="player_in_feed">
+        {{player.render() | safe}}
+    </div>
+    {%endfor%}
+</div>
+{%endblock%}
