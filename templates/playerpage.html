@@ -1,0 +1,34 @@
+{% extends "templates/bas.html" %}
+
+
+{% block content %}
+<div class="name">
+    Name:
+    {{p.name}}
+</div>
+<div class="mouse">
+Mouse:
+    {{p.mouse}}
+</div>
+<div class="keyboard">
+Keyboard:
+    {{p.keyboard}}
+</div>
+<div class="monitor">
+Monitor:
+    {{p.monitor}}
+</div>
+<div class="chair">
+Chair:
+    {{p.chair}}
+</div>
+
+<div class="p_img">
+    <img src="{{p.p_img}}">
+</div>
+<br>
+
+<div>
+    <a href="/deleteplayer">Delete</a>
+</div>
+{%endblock%}

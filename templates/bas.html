@@ -21,6 +21,8 @@
 
 <body>
 
+
+
 <section class="tab">
 	<ul class="nav nav-tabs">
 		<li ng-class="{active: tab.isSet(1)}">
@@ -44,6 +46,14 @@
 		<li ng-class="{active: tab.isSet(7)}">
 			<a href="/" ng-click="tab.setTab(7)">Homepage</a>
 		</li>
+        {% if user %}
+        <li ng-class="{active: tab.isSet(8)}">
+            <a href="/uploadplayer" ng-click="tab.setTab(8)">Upload Player</a>
+        </li>
+        <li ng-class="{active: tab.isSet(9)}">
+            <a href="/uploadteam" ng-click="tab.setTab(9)">Uplaod Team</a>
+        </li>
+        {%endif%}
 
 
 	</ul>
@@ -73,7 +83,11 @@
 
 {%endblock%}
 
+<br>
 
-<a href="/uploadplayer">Uploadplayer</a> <br>
-<a href="/uploadteam">Uploadteam</a>
+<br>
+{% if user %}~ {{user.name}} (<a class="login-link" href="/logout">logout</a>) {% else %}
+<a class="login-link" href="/login">login</a> {%endif%}
+
+
 </body>

@@ -1,0 +1,16 @@
+{% extends "templates/bas.html" %}
+
+
+{% block content %}
+{% if user %}~ {{user.name}} (<a class="login-link" href="/logout">logout</a>) {% else %}
+<a class="login-link" href="/login">login</a> |
+<a class="login-link" href="/signup">signup</a> {% endif %}
+{%endblock%}
+
+
+
+
+
+
+
+

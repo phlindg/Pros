@@ -1,0 +1,21 @@
+{% extends "templates/bas.html" %}
+
+{%block content %}
+<div class="teampage">
+    <div>
+        {{t.t_name}}
+    </div>
+    <div class="t_img">
+        <img src="{{t.t_img}}">
+    </div>
+
+    {% for p in t.t_players %}
+    <div>
+        {{t.playars.get(p).name}}<br>
+        <a href="/players/{{p.id()}}"><img class="team_players" src="{{t.playars.get(p).p_img}}"></a>
+    </div>
+    {%endfor%}
+
+</div>
+
+{%endblock%}
