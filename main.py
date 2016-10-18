@@ -188,8 +188,8 @@ class Users(db.Model):
 
     @classmethod
     def by_name(cls, name):
-        u = Users.all().filter("name = ", name).get()
-        return u
+        user = Users.all().filter("name = ", name).get()
+        return user
 
     @classmethod
     def register(cls, name, pw, email=None):
